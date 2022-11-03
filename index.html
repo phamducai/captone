@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberPhone</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <!-- font awsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="#" class="logo">CyberPhone</a>
+
+        <nav class="navbar">
+          <a href="#" class="active">Home</a>
+          <a href="#">About</a>
+          <a href="#">Shop</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+          <a href="#product" onclick="renderCart()" id="buttonCart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="numberitem"></span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="carousel">
+      <main class="main">
+        <div class="container">
+          <div class="info">
+            <h2>CyberPhone</h2>
+            <h3>Best Smartphone of 2021!</h3>
+            <p>
+              Cras tortor mi, lobortis quis ornare in, varius scelerisque urna.
+              Vivamus imperdiet dolor nec odio convallis consequat.
+            </p>
+            <div class="btns">
+              <button class="btn-info">More Info</button>
+              <button class="btn-shop">
+                <i
+                  class="fa-solid fa-cart-shopping"
+                  style="margin-right: 5px"
+                ></i
+                >Shop
+              </button>
+            </div>
+          </div>
+          <img src="./img/product-header2.png" />
+        </div>
+      </main>
+    </section>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+
+    <!-- Modalpucher -->
+    <div
+      class="modal fade"
+      id="puchaseModal"
+      tabindex="-1"
+      aria-labelledby="puchaseModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-center" id="puchaseModalLabel">
+              Receipt
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="puchaseItem"></div>
+
+          <div class="modal-body" id="totalmoney"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#modalOrder"
+              onclick="orderItem()"
+            >
+              Order
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal Order -->
+
+    <div
+      class="modal fade"
+      id="modalOrder"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="modalOrderLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div>your order has been placed</div>
+            <hr />
+            <div>Your order-id is: <span id="idDonhang"></span></div>
+            <hr />
+            <div>your order will be delivered to you in 3-5 working days</div>
+
+            <hr />
+            <div>
+              you can pay $ <span id="totalBillMoneys"></span> by card or any
+              online transaction method after the products have been dilivered
+              to you
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              onclick="Okey()"
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="product" id="product">
+      <div class="container">
+        <h2>-Featured Products-</h2>
+        <select
+          name=""
+          id="typePhone"
+          style="margin-bottom: 30px"
+          onchange="searchType()"
+        >
+          <option value="">Chon loai dien thoai</option>
+          <option value="Iphone">Iphone</option>
+          <option value="Samsung">Samsung</option>
+        </select>
+        <div class="row" id="renderhtml"></div>
+      </div>
+      <div id="modalrender" class="" style="display: none">
+        <div class="modalss">
+          <h2>
+            Card
+            <button
+              id="closeButton"
+              onclick="closemodal()"
+              style="
+                position: absolute;
+                top: 95px;
+                right: 50px;
+                border: none;
+                background-color: transparent;
+              "
+            >
+              <i
+                class="fa-solid fa-xmark"
+                style="
+                  padding: 5px;
+                  font-size: 20px;
+                  font-weight: 600;
+                  color: white;
+                "
+              ></i>
+            </button>
+          </h2>
+          <div
+            class="content"
+            id="renderCartItems"
+            class="cardbody"
+            style="overflow-y: scroll; height: 380px"
+          ></div>
+
+          <div class="bottomCart">
+            <div class="paycheck">ToTal: $<span id="coutMoney"></span></div>
+            <button
+              class="btnCart"
+              onclick="puchase()"
+              data-bs-toggle="modal"
+              data-bs-target="#puchaseModal"
+            >
+              Purchase
+              <i class="fa-solid fa-credit-card" style="color: #6665dd"></i>
+            </button>
+            <button class="btnCart" onclick="ClearItems()">
+              Clear Cart
+              <i class="fa-solid fa-trash" style="color: #bb342f"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"
+      integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script src="modal/modalNewCart.js"></script>
+    <script src="modal/modal.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

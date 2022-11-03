@@ -1,0 +1,315 @@
+$c1-100: #f5f9fe;
+$c1-200: #e2ebfc;
+$c1-300: #c9d8f4;
+$c1-400: #60a4f4;
+$c1-500: #2a73dd;
+$c1-600: #656774;
+$c1-700: #1d365e;
+
+$cWhite: #ffffff;
+
+// style guide
+$text-xs: 0.75rem;
+$text-base: 1rem;
+$text-sm: 1.25rem;
+$text-md: 1.5rem;
+$text-lg: 2.25rem;
+$text-xl: 3rem;
+$text-2xl: 4rem;
+$text-3xl: 5rem;
+
+$text-light: 300;
+$text-regular: 400;
+$text-semiBold: 600;
+$text-bold: 700;
+
+// text, button, input, table ...
+@mixin Text($fs, $fw, $c, $hc: $c) {
+  font-size: $fs;
+  color: $c;
+  font-weight: $fw;
+  &:hover {
+    color: $hc;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn {
+  padding: 10px;
+  text-align: center;
+}
+
+.btnCart {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+
+  margin-right: 20px;
+  border-radius: 10px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+}
+.container {
+  max-width: 1280px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: $c1-100;
+  box-shadow: 0 2px 4px $c1-200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  .container {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      @include Text($text-lg, $text-bold, $c1-500);
+      text-decoration: none;
+    }
+
+    .navbar {
+      a {
+        @include Text($text-base, $text-semiBold, $c1-700, $c1-500);
+        margin-left: 2rem;
+        text-decoration: none;
+        transition: all 0.4s;
+        position: relative;
+        // parent selector
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -1px;
+          width: 0;
+          height: 2px;
+          background-color: $c1-500;
+          transition: all 0.4s;
+        }
+
+        &:hover::after,
+        &.active::after {
+          width: 100%;
+        }
+
+        &.active {
+          color: $c1-500;
+        }
+      }
+    }
+  }
+}
+
+.carousel {
+  background-image: url(../img/product-header-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+
+  .main {
+    .container {
+      height: 70rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .info {
+        width: 50%;
+        h2 {
+          @include Text($text-3xl, $text-bold, $c1-500);
+          margin-bottom: 1rem;
+        }
+        h3 {
+          @include Text($text-md, $text-semiBold, $c1-700);
+          margin-bottom: 2rem;
+        }
+        p {
+          @include Text($text-base, $text-regular, $c1-600);
+          margin-bottom: 1rem;
+        }
+
+        .btn-info {
+          background-color: transparent;
+          border: 2px solid $c1-500;
+          border-radius: 0.5rem;
+          display: inline-block;
+          padding: 0 40px;
+          height: 50px;
+          @include Text($text-base, $text-semiBold, $c1-500);
+          box-shadow: 0 3px 6px $c1-300;
+          margin-right: 1rem;
+          &:hover {
+            background-color: $c1-500;
+            color: $cWhite;
+            cursor: pointer;
+          }
+        }
+
+        .btn-shop {
+          background: linear-gradient(120deg, $c1-400, $c1-500);
+          border: none;
+          border-radius: 0.5rem;
+          display: inline-block;
+          padding: 0 40px;
+          height: 50px;
+          @include Text($text-base, $text-semiBold, $cWhite);
+          box-shadow: 0 3px 6px $c1-300;
+          &:hover {
+            opacity: 0.75;
+            cursor: pointer;
+          }
+        }
+      }
+
+      img {
+        width: 50%;
+      }
+    }
+  }
+}
+
+// product
+
+.product {
+  padding: 50px 0;
+  position: relative;
+  .container {
+    h2 {
+      @include Text($text-lg, $text-bold, $c1-700);
+      text-align: center;
+      letter-spacing: 0.015rem;
+      margin-bottom: 70px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+      .col {
+        flex: 0 0 25%;
+        max-width: 25%;
+
+        &:hover img,
+        &:hover .card-body {
+          opacity: 0;
+        }
+        &:hover .item-detail {
+          opacity: 1;
+        }
+
+        .item {
+          box-shadow: 6px 6px 12px #e2ebfc, -6px -6px 12px #fff;
+          background-color: #f5f9fe;
+          border: none;
+          padding: 30px;
+          margin-bottom: 30px;
+          border-radius: 0.25rem;
+          position: relative;
+          transition: all 0.5s;
+
+          .card-body {
+            h3 {
+              @include Text($text-sm, $text-bold, $c1-700);
+              margin-top: 1rem;
+              text-align: center;
+            }
+            p {
+              @include Text($text-xs, $text-regular, $c1-600);
+              margin-top: 0.1rem;
+              text-align: center;
+            }
+          }
+          img {
+            vertical-align: middle;
+            border-style: none;
+            width: 100%;
+            box-shadow: 6px 6px 12px #e2ebfc, -6px -6px 12px #fff;
+            border-radius: 8px;
+            transition: all 0.5s;
+          }
+        }
+        .item-detail {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          height: 4px;
+          opacity: 0;
+
+          p {
+            @include Text($text-base, $text-regular, $c1-600);
+            margin-left: 50px;
+            display: block;
+            margin-bottom: 0.5rem;
+          }
+          h5 {
+            @include Text($text-sm, $text-semiBold, $c1-700);
+            text-align: center;
+          }
+
+          h4 {
+            margin: 2rem 0;
+            @include Text($text-md, $text-semiBold, $c1-700);
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  .modalss {
+    background-color: gray;
+    margin-right: auto;
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 100;
+
+    h2 {
+      @include Text($text-md, $text-semiBold, $c1-700);
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 100px;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+      gap: 10px;
+      align-items: center;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+    .cardbody {
+      overflow: scroll;
+      height: 80px;
+      width: 80px;
+    }
+    .bottomCart {
+      position: absolute;
+      top: 530px;
+      right: 0px;
+      .paycheck {
+        text-align: end;
+        padding-right: 25px;
+        padding-bottom: 10px;
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
