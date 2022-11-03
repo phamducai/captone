@@ -270,7 +270,9 @@ function deleteItem(id) {
       cart.splice(index, 1);
 
       renderCart();
-      document.getElementById(`${id}`).innerHTML = `<button
+      document.getElementById(
+        `${id}`
+      ).innerHTML = `<button style="margin: 0 0 30px 100px" class="btn btn-success"
       onclick="buyNow('${id}')"
     > Buy Now
     </button>`;
